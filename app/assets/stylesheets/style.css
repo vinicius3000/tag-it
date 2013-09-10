@@ -191,7 +191,7 @@
   width: 100%;
   line-height: 200px;
   display: inline-block;
-  background: url('https://s3.amazonaws.com/jetstrap-site/images/dashboard/folder_jetstrap_icon.png') no-repeat 50% 50% transparent;
+  background: url('/assets/folder_jetstrap_icon.png') no-repeat 50% 50% transparent;
 }
 
 #folders .folder > a > h3 {
@@ -213,7 +213,7 @@
 
 #folders .folder.new > a {
   height: 240px;
-  background: url('https://s3.amazonaws.com/jetstrap-site/images/dashboard/folder_plus_icon.png') no-repeat 50% 50% transparent;
+  background: url('/assets/folder_plus_icon.png') no-repeat 50% 50% transparent;
 }
 
 #folders .folder .bottom {

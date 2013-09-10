@@ -10,6 +10,7 @@
             <legend>Nova Avaliação </legend>
 
 
+
             <%= form_for(Project.new, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
               
             <%= f.hidden_field :user_id, :value => current_user.id %>
@@ -18,7 +19,11 @@
             <dl>
               <dt><%= f.label :Video %>
 
-                <b> Atenção: o vídeo deve ser gravado em MP4 H264</b></dt>
+            
+              <span title="H264 é a codificação de arquivos .MP4 que pode ser reproduzida em HTML5, tecnologia utilizada pela Tag-it"><b>Atenção: o vídeo deve ser gravado em MP4 com codificação H264</b> <br /></span>
+
+              <br />
+            </dt>
               <dd>  <%= f.file_field :video, :required => true %> </dd>
             </dl>
 
