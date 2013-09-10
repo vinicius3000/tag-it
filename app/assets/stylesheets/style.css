@@ -13,7 +13,7 @@
     /* Top Padding for responsive navbar-top-fixed */
 
         body { /* Add top padding for full-width layout */
-          padding-top: 129px;
+          padding-top: 115px;
           padding-bottom: 10px;
           font-family: 'ProximaNova-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
