@@ -26,7 +26,7 @@
 		<source src=<%= @project.video.url%> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
 	</video>
 
-	<p> Enviado por <%= @project.user.name %>  - project id <%= @project.id %></p>
+	<p> Enviado por <%= @project.user.name %> (<%= @project.id %>) </p>
 
 					
 </fieldset>
@@ -199,9 +199,9 @@
 <td width="1070">
 <div style="display: inline; float: left; width:90px; height:90px;"><img src="http://localhost:3000/assets/Tag-Icons/<%= tag.tagid %>.png "></img> </div> 
   <div style="display: inline; float: left; width:15%"> <label>In&iacute;cio:</label><br /> 
-   <a onclick="setVideoTime(<%= tag.start %>)"> <%= tag.start %> </a></div> 
+   <a href="#" onclick="setVideoTime(<%= tag.start %>)"> <%= tag.start %> </a></div> 
   <div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
-  <%= tag.finish %> </div> 
+  <a href="#" onclick="setVideoTime(<%= tag.finish %>)"> <%= tag.finish %> </a> </div> 
   <div style="display: inline; float: left; width:30%"> <label>Observa&ccedil;&atilde;o:</label><br /> 
     <%= tag.obs %> </div> 
   <div style="display: inline; float: left; width:20%">   <label>Avaliador</label> <br /> 
@@ -246,10 +246,6 @@
 				<td><%= @project.goal %></td>
 			</tr>
 			<tr>
-				<td>Caminho do video:</td>
-				<td><%= @project.video.url %></td>
-			</tr>
-			<tr>
 				<td>Criador:</td>
 				<td><%= @project.user.name %></td>
 			</tr>
@@ -259,6 +255,9 @@
 		<br />
 
 		<%= link_to 'Editar Detalhes da Avaliação', edit_project_path(@project) %> 
+
+		<br />
+		<%= link_to 'Excluir', @project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
 
 		<br />
 
