@@ -51,7 +51,7 @@ class ProjectparticipantsController < ApplicationController
         format.html { redirect_to session[:return_to], notice: 'Avaliador adicionado.' }
         format.json { render json: @projectparticipant, status: :created, location: @projectparticipant }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to session[:return_to], alert: 'Avaliador ja adicionado' }
         format.json { render json: @projectparticipant.errors, status: :unprocessable_entity }
       end
     end
