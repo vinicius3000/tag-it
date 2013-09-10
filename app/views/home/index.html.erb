@@ -1,0 +1,131 @@
+
+<div id="boxes">
+
+<div id="dialog" class="window">
+
+
+					
+						<a href="#" class="close">[X]</a>
+						<legend>Novo Projeto/Video por<% if user_signed_in? %><%= current_user.id %><% end %>
+						</legend>
+
+
+						<%= form_for(Project.new, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
+						  
+						<%= f.hidden_field :user_id, :value => current_user.id %>
+
+						 <dl>
+							<dt><%= f.label :Projeto %></dt>
+							<dd>  <%= f.text_field :name %> </dd>
+						</dl>
+
+						 <dl>
+							<dt> <%= f.label :Objetivo %> </dt>
+							<dd>  <%= f.text_area :goal , :rows => "4" %> </dd>
+						</dl>
+						
+							
+						 <dl>
+							<dt><%= f.label :Video %></dt>
+							<dd>  <%= f.file_field :video %> </dd>
+						</dl>
+
+						 <dl>
+							<dd>  <%= f.submit %> </dd>
+						</dl>
+
+					 
+						<% end %>
+
+					
+					
+</div>
+  
+
+<div class="tab-pane" id="navbar-fixed-Organize">
+			
+
+	<div >
+	        <div id="folders" style="">
+	          
+	          <ul class="clearfix">
+	            <li class="folder new">
+	              <a href="#dialog" name="modal" ></a>
+	            </li>
+	            
+	            <li class="folder" data-folderid="13a0b88d7c">
+	            <a href="#" data-action="open-folder">
+	                <h3 class="folder-name">Tag-It</h3>
+	              </a>
+	              <div class="bottom clearfix proxima-thin">
+	                <div class="left">
+	                  Project Description
+	                </div>
+	                <div class="btn-group dropdown pull-right">
+	                  <a class="btn-link dropdown-toggle" data-toggle="dropdown" href="#">
+	                    <div class="j-icon j-icon-gear-black"></div>
+	                  </a>
+	                </div>
+
+	            </li>
+	            
+	          </ul>
+	        </div>
+	    </div>
+	</div>
+
+
+    
+	</div><!-- /#navbar-fixed-css -->
+
+</div>
+
+
+<!--<h3>Home</h3><% @users.each do |user| %>
+  <p>User: <%=link_to user.name, user %></p>
+<% end %>-->
+
+<script type="text/javascript">
+
+
+$(document).ready(function() {	
+
+	$('a[name=modal]').click(function(e) {
+		e.preventDefault();
+		
+		var id = $(this).attr('href');
+	
+		var maskHeight = $(document).height();
+		var maskWidth = $(window).width();
+	
+		$('#mask').css({'width':maskWidth,'height':maskHeight});
+
+		$('#mask').fadeIn(1000);	
+		$('#mask').fadeTo("slow",0.8);	
+	
+		//Get the window height and width
+		var winH = $(window).height();
+		var winW = $(window).width();
+              
+		//$(id).css('top',  winH/2-$(id).height()/2);
+		$(id).css('left', winW/2-$(id).width()/2);
+	
+		$(id).fadeIn(2000); 
+	
+	});
+	
+	$('.window .close').click(function (e) {
+		e.preventDefault();
+		
+		$('#mask').hide();
+		$('.window').hide();
+	});		
+	
+	$('#mask').click(function () {
+		$(this).hide();
+		$('.window').hide();
+	});			
+	
+});
+
+</script>

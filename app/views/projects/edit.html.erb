@@ -1,0 +1,30 @@
+
+<h2>Editar Projeto</h2>
+
+<% provide(:title, "Editar Projeto") %>
+
+<div>
+  <div >
+    <%= form_for(@project) do |f| %>
+
+      <%= f.label :Nome %>
+      <%= f.text_field :name %>
+
+      <%= f.label :Objetivo %>
+      <%= f.text_field :goal %>
+
+      <%= f.label :Video, :required => true %>
+      <%= f.file_field :video %>
+      <br />
+      <%= f.submit "Salvar" %>
+    <% end %>
+
+  </div>
+</div>
+
+
+
+
+
+<%= link_to 'Visualizar Projeto', @project %> |
+<%= link_to 'Voltar', projects_path %>

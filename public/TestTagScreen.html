@@ -1,0 +1,196 @@
+
+<!-- Tab 3 - Etiquetagem -->
+
+<script language="javascript" type="text/javascript" src="niceforms.js"></script>
+<link rel="stylesheet" type="text/css" media="all" href="niceforms-default.css" />
+
+<script language="Javascript">
+
+function seekTime(varSeconds)
+{
+	alert("oi")
+	var mediaElement = document.getElementById('myTaggedVideo');
+	mediaElement.currentTime = varSeconds; // Seek to 122 seconds
+}
+
+function setCurrentTime(varInputText)
+{
+	var mediaElement = document.getElementById('myTaggedVideo');
+	var varSeconds = mediaElement.currentTime 
+
+	varInputText.value = varSeconds;
+	alert("Time Set!")
+	
+}
+
+
+</script>
+
+
+<style>
+
+
+body {font:12px/17px Arial, Helvetica, sans-serif; color:#333; background:#ccc; padding:0px 0px 0px 0px;}
+
+video.myTaggedVideo {
+	width: 97%;
+	border: 0px solid black;
+}
+
+#colVideo {
+
+min-width:400px;
+width:40%;
+
+}
+
+#colTag {
+
+min-width:400px;
+width:40%;
+
+}
+
+#colUser {
+
+min-width:140px;
+width:20%;
+
+}
+
+
+
+.video-container {
+	/**min-width: 474px;*/
+	/**display: inline-block;*/
+	text-align: center;
+}
+
+p {
+	font: 14px Arial;
+}
+
+table.tableTagScreen td{
+	overflow:hidden;
+	vertical-align: top;
+}
+
+form.newTag input{
+	float: right;
+	margin-right: 2px;
+	width:50%;
+
+}
+
+.full-tab-pane{
+
+	min-width: 800px;
+
+}
+
+</style>
+
+<div class="full-tab-pane" id="navbar-fixed-Tags">
+
+	<table class="tableTagScreen" width="100%">	     
+		<tr>
+			<td id="colVideo">
+
+				<form action="vars.php" method="post" class="niceform">
+					<fieldset height="537px">
+						<legend>Video</legend>
+
+						<br />
+
+						<div class="video-container">
+							<center>
+								<video   width="390" height="380"class= "myTaggedVideo" id= "myTaggedVideo" poster="/assets/video.png" controls>
+									<source src="http://www.html5rocks.com/en/tutorials/video/basics/Chrome_ImF.mp4" type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+								</video>
+							</center>
+
+						</div>
+
+						<dl>
+							<dt><label for="upload">Upload a File:</label></dt>
+							<dd><input type="file" name="upload" id="upload" /></dd>
+						</dl>
+
+						
+					</fieldset>
+
+				</form>
+
+
+
+
+			</td>
+
+			<td id="colTag">
+
+
+
+				<form action="vars.php" method="post" class="niceform">
+					<fieldset height="537px">
+						<legend>Nova Tag</legend>
+						<dl>
+							
+							
+							
+							<dt><label for="comments">Start Time:</label></dt>
+							<dd><input onclick ="setCurrentTime(this)" type="text" value="12" ></input></dd>
+
+							<dt><label for="comments">End Time:</label></dt>
+							<dd><input onclick="setCurrentTime(this)" type="text" value="12" ></input></dd>
+
+							<dt><label for="comments">Message:</label></dt>
+							<dd><textarea name="comments" id="comments" rows="5" cols="60"></textarea></dd>
+						</dl>
+						<dl>
+							<dt><label for="upload">Upload a File:</label></dt>
+							<dd><input type="file" name="upload" id="upload" /></dd>
+						</dl>
+						<dl>
+							<dt><label for="test">Sample Button:</label></dt>
+							<dd><button type="button" onclick="seekTime(12)" name="test" id="test">Go to 12 seconds!</button></dd>
+						</dl>
+						<dt><label for="test">Sample Button:</label></dt>
+						<dd><input type="submit" name="submit" id="submit" value="Submit" /></dd>
+					</dl>
+
+
+
+				</fieldset>
+
+
+			</form>
+
+
+		</td>
+
+
+		<td id="colUser">
+			<form action="vars.php" method="post" class="niceform">
+				<fieldset height="537px">
+					<legend>Usuarios</legend>
+
+				</fieldset>
+
+
+			</form>
+		</tr>
+
+
+
+
+
+	</table>
+	<fieldset height="537px">
+		<legend>Etiquetas</legend>
+
+	</fieldset>
+
+
+</div>  	
+
+<script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>

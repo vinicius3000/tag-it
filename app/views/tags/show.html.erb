@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<div style="display: inline; float: left; width:90px; height:90px;"><img src="http://localhost:3000/assets/Tag-Icons/<%= @tag.tagid %>.png "></img> </div> 
+ 	<div style="display: inline; float: left; width:15%"> <label>In&iacute;cio:</label><br /> 
+ 		<%= @tag.start %> </div> 
+ 	<div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
+ 	<%= @tag.finish %> </div> 
+ 	<div style="display: inline; float: left; width:30%">	<label>Observa&ccedil;&atilde;o:</label><br /> 
+ 		<%= @tag.obs %> </div> 
+ 	<div style="display: inline; float: left; width:20%"> 	<label>Usu&aacute;rio:</label> <br /> 
+ 		<%= @tag.user.name %> </div> 
+ 	<div style="display: inline; float: left; width:20%"> 	<label>Usu&aacute;rio:</label> <br /> 
+ 		<%= @tag.user.id %> </div> 
+ 	<br /><br />
+ 	<hr width="100%">
+ </div>
+
+Proj: <%= @tag.project_id %> 
+Tagid: <%= @tag.tagid %> 
+
+
+
+<%= @tag.user.email %> 
+<%= @tag.user.email %> 
+
+
+<p> Enviado por <%= @tag.user.email %>  - project id <%= @tag.project_id %></p>
+<br />
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>
+
+

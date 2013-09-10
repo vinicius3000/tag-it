@@ -1,0 +1,329 @@
+
+<!-- Scripts for combobox img -->
+<script src="../assets/jquery-1.9.0.min.js"></script>
+<!-- <msdropdown> -->
+<link rel="stylesheet" type="text/css" href="../assets/dd.css" />
+<script src="../assetsjquery.dd.js"></script>
+<!-- </msdropdown> -->
+
+
+<!-- Tab 3 - Etiquetagem -->
+
+<!-- Div for the video -->
+
+<div style="display:block; height:560px">
+
+<div class="inline">
+
+<fieldset height="537px">
+
+	<legend><%= @project.name %></legend>
+
+	<video width="475" height="380"class= "myTaggedVideo" id= "myTaggedVideo" poster="/assets/video.png" controls>
+		  <source src=<%= @project.video.url%> type="video/mp4">
+		  <source src=<%= @project.video.url%> type="video/ogg">
+		  Seu navegador ainda nao suporta videos em HTML 5, baixe o Google Chrome para continuar.
+		<source src=<%= @project.video.url%> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+	</video>
+
+	<p> Enviado por <%= @project.user.name %>  - project id <%= @project.id %></p>
+
+					
+</fieldset>
+
+</div>
+
+
+<!-- Div for the tagging -->
+
+<div class="inline2">
+
+	<fieldset height="537px">
+
+		<legend>Nova Etiqueta</legend>
+
+		<div style="float:left">
+
+
+
+
+		<%= form_for(Tag.new, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
+						  
+		<%= f.hidden_field :project_id, :value => @project.id %>
+
+
+		<select id="tagid" name="tag[tagid]" style="width:240px;">
+		<option value="1" data-image="http://localhost:3000/assets/Tag-Icons/1.png" >Ué, o que houve?</option>
+		<option value="02" data-image="http://localhost:3000/assets/Tag-Icons/2.png">Socorro!</option>
+		<option value="03" data-image="http://localhost:3000/assets/Tag-Icons/3.png">Por que não funciona?</option>
+		<option value="04" data-image="http://localhost:3000/assets/Tag-Icons/4.png">Cadê?</option>
+		<option value="05" data-image="http://localhost:3000/assets/Tag-Icons/5.png">Assim não dá!</option>
+		<option value="06" data-image="http://localhost:3000/assets/Tag-Icons/6.png">Onde estou?</option>
+		<option value="07" data-image="http://localhost:3000/assets/Tag-Icons/7.png">E agora?</option>
+		<option value="08" data-image="http://localhost:3000/assets/Tag-Icons/8.png">O que é isso?</option>
+		<option value="09" data-image="http://localhost:3000/assets/Tag-Icons/9.png">Epa!</option>
+		<option value="10" data-image="http://localhost:3000/assets/Tag-Icons/10.png">Não, obrigado!</option>
+		<option value="11" data-image="http://localhost:3000/assets/Tag-Icons/11.png">Vai de outro jeito.</option>
+		<option value="12" data-image="http://localhost:3000/assets/Tag-Icons/12.png">Desisto!</option>
+		<option value="13" data-image="http://localhost:3000/assets/Tag-Icons/13.png">Para mim está bom</option>
+    	</select>
+
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+
+		 <dl>
+			<dt><%= f.label :Inicio %></dt>
+			<dd> 
+				<img src="http://localhost:3000/assets/Tag-Icons/getTime.jpg" onclick="getCurrentStartTime()" style="width:30px; float:left;"  title="Clique para obter o tempo atual do video!" ></img> 
+				<%= f.text_field :start %> </dd>
+		</dl>
+
+		<dl>
+			<dt> <%= f.label :Fim %></dt>
+			<dd>
+				<img src="http://localhost:3000/assets/Tag-Icons/getTime.jpg" onclick="getCurrentFinishTime()" style="width:30px; float:left;"  title="Clique para obter o tempo atual do video!" ></img> 
+
+				<%= f.text_field :finish %> 
+			</dd>
+		</dl>
+
+		 <dl>
+			<dt> <%= f.label :Observação %> </dt>
+			<dd>  <%= f.text_area :obs , :rows => "4", :style => "width:260px" %> </dd>
+		</dl>	
+
+		 <dl>
+			<dd>  <%= f.submit :Criar%> </dd>
+		</dl>
+		
+		<% end %>
+
+		</div>
+
+	
+	</fieldset>
+
+</div>
+
+<div class="inline2">
+
+	<fieldset height="537px">
+
+		<legend>Avaliadores</legend>
+
+		<div class="divParticipants">
+
+		<%= form_for Projectparticipant.new do |f| %>
+		  <b> Adicionar Avaliadores: </b> <br /><br />
+
+		  <ul>
+		      <li>
+		      	<%= f.select :user_id, User.all.collect {|user| [ user.name, user.id ] } %>
+				
+				<br />
+
+		       	<%= f.hidden_field :project_id ,:value => @project.id %>
+		       	<br />
+		  	  <%= f.submit "Adicionar" %>
+		  
+		      </li>
+		    <% end %>
+		  </ul>
+
+
+		<table>
+
+		<tr>
+		<td>
+
+		<div style="width:280px; display:inline; float:right">
+			<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= @project.user.avatar.url%> width="140px" height="140px" </img>
+			</div>
+
+			<div style="width:90px; display:inline; float:right; padding:15px;"><b>Responsável</b> <br /><%= @project.user.name%> </div>
+
+			
+		</div>
+		</td>
+		</tr>
+
+
+
+		<% Projectparticipant.find_each(:conditions => ['project_id = ?',  @project.id]) do |projectuser| %>
+		<tr>
+		<td>
+			<div style="width:280px; display:inline; float:right">
+			<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= projectuser.user.avatar.url%> width="140px" height="140px" </img>
+			</div>
+
+			<div style="width:90px; display:inline; float:right; padding:15px;"><b>Avaliador</b> <br /><%= projectuser.user.name%><br /> <%= link_to 'Remover', projectuser, method: :delete, data: { confirm: 'Are you sure?' } %> </div>
+
+
+			</div>
+		</td>
+		</tr>
+		<% end %>
+
+		</table>
+
+
+</div>
+		
+	
+	</fieldset>
+
+</div>
+
+</div>
+
+<div style="display:block">
+
+	<fieldset height="537px">
+		<legend>Etiquetas</legend>
+
+
+
+<table>
+
+<%#Order tags per start time:%>
+<% @tags = Tag.find(:all, :order => 'start ASC', :conditions => ['project_id = ?',  @project.id])%>
+<%#And in the view you can do:%>
+
+<%# @comments.each do |comment| -%>
+
+<%# Tag.find_each(:conditions => ['project_id = ?',  @project.id],  :order => "Start") do |tag| %>
+
+<% @tags.each do |tag| -%>
+<tr>
+<td width="1070">
+<div style="display: inline; float: left; width:90px; height:90px;"><img src="http://localhost:3000/assets/Tag-Icons/<%= tag.tagid %>.png "></img> </div> 
+  <div style="display: inline; float: left; width:15%"> <label>In&iacute;cio:</label><br /> 
+   <a onclick="setVideoTime(<%= tag.start %>)"> <%= tag.start %> </a></div> 
+  <div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
+  <%= tag.finish %> </div> 
+  <div style="display: inline; float: left; width:30%"> <label>Observa&ccedil;&atilde;o:</label><br /> 
+    <%= tag.obs %> </div> 
+  <div style="display: inline; float: left; width:20%">   <label>Avaliador</label> <br /> 
+    <%= tag.user.name %> </div> 
+   <div style="display: inline; float: left; width:10%">   <label></label> <br /> 
+     <%= link_to 'Excluir', tag, method: :delete, data: { confirm: 'Tem Certeza?' } %>  ||
+ 	 <%= link_to 'Editar', edit_tag_path(tag) %></div> 
+
+  <br /><br />
+  <hr width="100%">
+ </div>
+ </td>
+ </tr>
+<% end %>
+
+</table>
+
+ 	
+	</fieldset>
+
+
+</div>  	
+
+
+
+
+<p id="notice"><%= notice %></p>
+
+
+<div style="display:block">
+
+	<fieldset height="537px">
+		<legend>Detalhes da Avaliação</legend>
+
+		<table>
+			<tr>
+				<td>Nome:</td>
+				<td><%= @project.name %></td>
+			</tr>
+			<tr>	
+				<td>Objetivo:</td>
+				<td><%= @project.goal %></td>
+			</tr>
+			<tr>
+				<td>Caminho do video:</td>
+				<td><%= @project.video.url %></td>
+			</tr>
+			<tr>
+				<td>Criador:</td>
+				<td><%= @project.user.name %></td>
+			</tr>
+		</table>
+
+
+		<br />
+
+		<%= link_to 'Editar Detalhes da Avaliação', edit_project_path(@project) %> 
+
+		<br />
+
+
+
+ 	
+	</fieldset>
+
+
+</div>  	
+
+<br />
+
+<b> <%= link_to 'Voltar para minhas avaliações', projects_path %> <b>
+
+
+<!-- Script for the combo with images -->
+
+<script>
+
+$(document).ready(function(e) {		
+	//no use
+	try {
+		var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
+												var val = data.value;
+												if(val!="")
+													window.location = val;
+											}}}).data("dd");
+
+		var pagename = document.location.pathname.toString();
+		pagename = pagename.split("/");
+		pages.setIndexByValue(pagename[pagename.length-1]);
+		$("#ver").html(msBeautify.version.msDropdown);
+	} catch(e) {
+		//console.log(e);	
+	}
+	
+	$("#ver").html(msBeautify.version.msDropdown);
+		
+	//convert
+	$("select").msDropdown({roundedBorder:false});
+	createByJson();
+	$("#tech").data("dd");
+});
+function showValue(h) {
+	console.log(h.name, h.value);
+}
+$("#tech").change(function() {
+	console.log("by jquery: ", this.value);
+})
+//
+</script>
+
+
+
+<script>
+
+function showValue(h) {
+	console.log(h.name, h.value);
+}
+$("#tech").change(function() {
+	console.log("by jquery: ", this.value);
+})
+//
+</script>
+
+</body>
+</html>

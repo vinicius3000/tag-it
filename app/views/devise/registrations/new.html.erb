@@ -1,0 +1,33 @@
+<h2>Registrar</h2><%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :name, :label => "Nome",:autofocus => true %>
+  <%= f.input :email,:label => "E-mail", :required => true %>
+  <b> Sua senha deve ter no mínimo 6 caracteres e nenhum caractere especial! </b>
+  <%= f.input :password, :label => "Senha", :required => true %>
+  <%= f.input :password_confirmation,:label => "Confirme a Senha", :required => true %>
+   
+  <hr> </hr>
+  <select id="function" name="user[function]" style="width:240px;">
+		<option value="Aluno">Aluno</option>
+		<option value="Professor">Professor</option>
+  </select>
+
+
+  <%= f.input :college,:label => "Instituição de Ensino", :required => true %>
+  <%= f.input :course,:label => "Curso", :required => true %>
+
+  
+  <div class="divAvatar">
+<img src=<%= @user.avatar.url%> width="140px" height="140px" </img>
+</div>
+
+
+  <%= f.error_notification %>
+  <%= f.file_field :avatar %>
+
+
+<hr></hr>
+ 
+  <%= f.button :submit, 'Registrar', :class => 'btn-primary' %>
+<% end %>
+

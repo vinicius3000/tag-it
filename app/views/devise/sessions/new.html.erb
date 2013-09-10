@@ -1,0 +1,10 @@
+<div>
+	<h2>Entrar</h2>
+	<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+	  <%= f.input :email,:label => "E-mail", :autofocus => true %>
+	  <%= f.input :password,:label => "Senha" %>
+	  <%= f.input :remember_me,:label => "Lembrar-me", :as => :boolean if devise_mapping.rememberable? %>
+	  <%= f.button :submit, "Entrar", :class => 'btn-primary' %>
+	<% end %>
+	<%= render "devise/shared/links" %>
+<div>

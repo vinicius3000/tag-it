@@ -1,0 +1,338 @@
+/* =======================================
+
+    Main Stylesheet for My-Bootstrap-Site
+    
+    Innovations on Twitter Bootstrap
+    
+========================================== */
+
+
+/*  Navbar Adjustments
+    ============================================= */
+
+    /* Top Padding for responsive navbar-top-fixed */
+
+        body { /* Add top padding for full-width layout */
+          padding-top: 129px;
+          padding-bottom: 10px;
+          font-family: 'ProximaNova-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        @media (max-width: 979px) {
+          body { /* Remove top padding when top navbar goes static */
+            padding-top: 0;
+          }
+        }
+
+
+    .brandTagIt {
+      color
+
+    }
+    .navbar .newBrand{padding-left:0px;padding-right:0px;margin:0 0 0 -5px;}
+
+
+
+    .video-container iframe,
+    .video-container object,
+    .video-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 600px;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        padding-top: 30px; height: 0; overflow: hidden;
+    }
+
+  /*Div for the video and tagging*/
+
+  div.divParticipants{
+     height: 500px;
+    float: left;
+    overflow: auto;
+    overflow-x:hidden;
+  }
+
+  div.inline { 
+    float:left; 
+    width:490px;
+    height:540px;
+  }
+
+   div.inline2 { 
+    float:left; 
+    width:280px;
+    height:540px;
+  }
+
+  .clearBoth { clear:both; }
+
+    .divAvatar{
+
+      width:110px;
+      height:110px;
+      overflow:hidden;
+      padding-right:15px;
+    }
+
+
+    .row { /* more top and bottom padding on rows */
+      padding: 20px 0;
+    }
+    .nav-pills li a h3 {
+      font-size: 14px;
+      line-height: 16px;
+    }
+    .nav-pills li.active a h3 {
+      font-size: 14px;
+      color: white;
+    }
+
+    
+/************************************ Projects ************************************/
+.folders-wrapper {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+#folders {
+  max-width: 1140px;
+  min-width: 320px;
+  width: 1140px;
+  margin: 10px auto 0px auto;
+}
+
+#folders > .plan-info.alert {
+  padding: 8px 30px;
+  margin: 0px;
+  width: 100%;
+  background-color: rgba(255,255,255,0.12);
+  font-family: 'ProximaNova-Thin', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  border: none;
+  color: #fff;
+  display: block;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  text-align: center;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.07);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2)
+}
+
+#folders > .plan-info.alert {
+  text-decoration: none;
+}
+
+#folders > .plan-info.alert b {
+  color: #fff;
+  font-weight: bold;
+  font-family: 'ProximaNova-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#folders > ul {
+  margin: 0px 0px 120px 0px;
+  padding-bottom: 110px; /* Extra padding for dropdown menu */
+}
+
+#folders .folder {
+  position: relative;
+  float: left;
+  display: block;
+  list-style: none;
+  width: 320px;
+  height: 240px;
+  min-width: 250px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+
+  margin: 10px;
+
+  transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+}
+
+#folders .folder:hover {
+  background-color: rgba(255,255, 255, 0.55);
+  box-shadow: 0 1px 15px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 15px rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 1px 15px rgba(0, 0, 0, 0.15);
+}
+
+#folders .folder.new {
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+#folders .folder.new:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+#folders .folder > a {
+  height: 200px;
+  width: 100%;
+  line-height: 200px;
+  display: inline-block;
+  background: url('https://s3.amazonaws.com/jetstrap-site/images/dashboard/folder_jetstrap_icon.png') no-repeat 50% 50% transparent;
+}
+
+#folders .folder > a > h3 {
+  font-family: 'ProximaNova-Bold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  width: 100%;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  color: #333;
+  padding: 10px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  text-decoration: none;
+  word-wrap: break-word;
+}
+
+#folders .folder.new > a {
+  height: 240px;
+  background: url('https://s3.amazonaws.com/jetstrap-site/images/dashboard/folder_plus_icon.png') no-repeat 50% 50% transparent;
+}
+
+#folders .folder .bottom {
+  font-family: 'ProximaNova-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #32302f;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  font-size: 12px;
+  border-top: 1px solid #EEE;
+  background-color: rgba(255, 255, 255, 0.4);
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  height: 90px;
+  line-height: 10px;
+  padding: 0px 15px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+
+  transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+}
+
+#wysi-tools .btn {
+  padding: 2px 11px;
+}
+
+#folders .folder:hover .bottom {
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+#folders .bottom > * {
+  line-height: 40px;
+  vertical-align: middle;
+
+  transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+}
+
+#folders .folder .bottom .left {
+  opacity: 1.0;
+}
+
+#folders .folder .dropdown-menu {
+  margin-right: -16px;
+}
+
+#folders .folder .dropdown-menu .dropdown-caret {
+  margin-right: 14px;
+}
+
+#folders .btn-group.open .dropdown-toggle:active {
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+}
+
+#folders .dropdown-toggle .j-icon {
+  vertical-align: middle;
+  margin-right: -6px;
+  opacity: 0.7;
+
+  transition: 0.1s linear;
+  -moz-transition: 0.1s linear;
+  -webkit-transition: 0.1s linear;
+}
+
+#folders .folder:hover .dropdown-toggle .j-icon {
+  opacity: 1.0;
+}
+
+
+/* Modal for new projects */
+
+#mask {
+  position:absolute;
+  left:-200;
+  top:-300;
+  z-index:9000;
+  background-color:#000;
+  display:none;
+}
+  
+#boxes .window {
+  position:absolute;
+  left:0;
+  top:50px;
+  width:600px;
+  height:200px;
+  display:none;
+  z-index:9999;
+  padding:20px;
+}
+
+#boxes #dialog {
+  width:350px; 
+  height:450px;
+  padding:30px;
+  background-color:#e5e5e5;
+}
+
+
+
+#dialog1 .d-header input {
+  position:relative;
+  top:10px;
+  left:100px;
+  border:3px solid #cccccc;
+  height:22px;
+  width:200px;
+  font-size:15px;
+  padding:5px;
+  margin-top:4px;
+}
+
+
+.close{display:block; text-align:right; }

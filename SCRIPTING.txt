@@ -1,0 +1,1 @@
+rails generate model Tag tagid :numeric obs:string start:numeric enc:numeric 

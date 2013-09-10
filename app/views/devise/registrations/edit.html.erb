@@ -1,0 +1,41 @@
+
+<h2>Editar Conta</h2>
+
+<div class="divAvatar">
+<img src=<%= @user.avatar.url%> width="140px" height="140px" </img>
+</div>
+
+
+
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, :class => 'form-vertical', :multipart => true }) do |f| %>
+  <%= f.error_notification %>
+  <%= f.file_field :avatar %>
+
+
+<hr></hr>
+  <%= f.input :name, :label => "Nome", :autofocus => true %>
+  <%= f.input :email, :label => "Email", :required => true %>
+  <%= f.input :password, :label => "Nova Senha", :autocomplete => "off", :hint => "Deixe em branco caso nao queria alterar", :required => false %>
+  <%= f.input :password_confirmation, :label => "Confirme a senha",:required => false %>
+  <%= f.input :current_password, :label => "Senha atual",:hint => "Digite sua senha atual para confirmar as mudanças", :required => true %>
+  
+  <hr></hr>
+
+  <select id="function" name="user[function]" style="width:240px;">
+		<option value="Aluno">Aluno</option>
+		<option value="Professor">Professor</option>
+  </select>
+
+
+  <%= f.input :college,:label => "Instituição de Ensino", :required => true %>
+  <%= f.input :course,:label => "Curso", :required => true %>
+
+  <%= f.button :submit, 'Salvar', :class => 'btn-primary' %>
+<% end %>
+
+
+
+<hr></hr>
+
+<p>Deseja excluir sua conta? <%= link_to "Cancelar minha conta", registration_path(resource_name), :data => { :confirm => "Tem certeza?" }, :method => :delete %>.</p>
+<%= link_to "Voltar", :back %>
