@@ -12,6 +12,8 @@
     <td><%= link_to 'Show', projectparticipant %></td>
     <td><%= link_to 'Edit', edit_projectparticipant_path(projectparticipant) %></td>
     <td><%= link_to 'Destroy', projectparticipant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+     <td><%= projectparticipant.project_id %></td>
+     <td><%= projectparticipant.user_id %></td>
   </tr>
 <% end %>
 </table>

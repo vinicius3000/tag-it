@@ -48,11 +48,11 @@
 					
 
 						<li>
-						<%= link_to('Editar Conta', edit_user_registration_path) %>
+						<%= link_to('Editar Conta' , edit_user_registration_path) %> 
 					</li>
 					
 					<li>
-						<%= link_to 'Sair'.html_safe, destroy_user_session_path, :method=>'delete', :title => 'Sair', :rel => 'tooltip' %>
+						<%= link_to 'Sair ('+ current_user.name + ')'.html_safe, destroy_user_session_path, :method=>'delete', :title => 'Sair' , :rel => 'tooltip' %> 
 					</li>
 
 

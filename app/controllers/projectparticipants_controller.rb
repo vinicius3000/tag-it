@@ -43,7 +43,7 @@ class ProjectparticipantsController < ApplicationController
     session[:return_to]=nil 
     session[:return_to] ||= request.referer
 
-
+    
     @projectparticipant = Projectparticipant.new(params[:projectparticipant])
 
     respond_to do |format|

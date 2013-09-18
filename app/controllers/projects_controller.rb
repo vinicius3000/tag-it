@@ -39,7 +39,12 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   # POST /projects.json
+
   def create
+    session[:return_to]=nil 
+    session[:return_to] ||= request.referer
+
+
     @project = Project.new(params[:project])
 
     respond_to do |format|
@@ -47,7 +52,7 @@ class ProjectsController < ApplicationController
         format.html { redirect_to @project, notice: 'Projeto criado com sucesso.' }
         format.json { render json: @project, status: :created, location: @project }
       else
-        format.html { render action: "new" }
+        format.html {  redirect_to session[:return_to], alert: 'Envie um video de ate 30MB e com o formato .mp4!' }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end

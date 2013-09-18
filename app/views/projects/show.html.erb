@@ -100,6 +100,9 @@
 
 		<div class="divParticipants">
 
+    
+		<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
+
 		<%= form_for Projectparticipant.new do |f| %>
 		  <b> Adicionar Avaliadores: </b> <br /><br />
 
@@ -117,6 +120,7 @@
 		    <% end %>
 		  </ul>
 
+		 <% end %>
 
 		<table>
 
@@ -145,7 +149,14 @@
 				<img src=<%= projectuser.user.avatar.url%> width="140px" height="140px" </img>
 			</div>
 
-			<div style="width:90px; display:inline; float:right; padding:15px;"><b>Avaliador</b> <br /><%= projectuser.user.name%><br /> <%= link_to 'Remover', projectuser, method: :delete, data: { confirm: 'Are you sure?' } %> </div>
+			<div style="width:90px; display:inline; float:right; padding:15px;"><b>Avaliador</b> <br /><%= projectuser.user.name%><br />
+
+					<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
+
+					 <%= link_to 'Remover', projectuser, method: :delete, data: { confirm: 'Tem Certeza?' } %> 
+
+					 <%end%>
+					</div>
 
 
 			</div>
@@ -193,7 +204,7 @@
    <a href="#" onclick="setVideoTime(<%= tag.start %>)"> <%= tag.start %> </a></div> 
   <div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
   <a href="#" onclick="setVideoTime(<%= tag.finish %>)"> <%= tag.finish %> </a> </div> 
-  <div style="display: inline; float: left; width:30%"> <label>Observa&ccedil;&atilde;o:</label><br /> 
+  <div style="display: inline; float: left; width:30%"> <label>Observa&ccedil;&atilde;o:</label> 
     <%= tag.obs %> </div> 
   <div style="display: inline; float: left; width:20%">   <label>Avaliador</label> <br /> 
     <%= tag.user.name %> </div> 
@@ -208,9 +219,10 @@
 
   <br /><br />
   <hr width="100%">
- </div>
  </td>
  </tr>
+ </div>
+
 <% end %>
 
 </table>
@@ -249,6 +261,7 @@
 
 
 		<br />
+		<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
 
 		<%= link_to 'Editar', edit_project_path(@project) %> 
 
@@ -256,6 +269,8 @@
 		<%= link_to 'Excluir', @project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
 
 		<br />
+
+		<% end %>
 
 
 
