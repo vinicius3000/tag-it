@@ -20,7 +20,7 @@
               <dt><%= f.label :Video %>
 
             
-              <span title="H264 é a codificação de arquivos .MP4 que pode ser reproduzida em HTML5, tecnologia utilizada pela Tag-it"><b>Atenção: o vídeo deve ser gravado em MP4 com codificação H264</b> <br /></span>
+              <span title="H264 é a codificação de arquivos .MP4 que pode ser reproduzida em HTML5, tecnologia utilizada pela Tag-it"><b>Atenção: o vídeo deve ser gravado em MP4 com codificação H264</b> </span>
 
               <br />
             </dt>
@@ -93,10 +93,13 @@
                 <div class="bottom clearfix proxima-thin">
                   <div class="left">
                     <div style = "float:right; width:50px">
-                     <%= link_to 'Excluir', project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
+
+                      <% if (current_user.has_role? :admin) or (project.user_id == current_user.id) %>
+                        <%= link_to 'Excluir', project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
+                      <% end %>
                    </div>
                   <div style = "float:left; width:240px">
-                     <b><%= project.goal %></b>
+                     <b> <a href="/projects/<%= project.id %>" ><%= project.goal %></a></b>
                    </div>
                   
                   </div>

@@ -42,7 +42,7 @@
 		<%= f.hidden_field :project_id, :value => @project.id %>
 
 
-		<select id="tagid" name="tag[tagid]" style="width:240px;">
+		<select id="tagid" name="tag[tagid]" style="width:260px;">
 		<option value="1" data-image="/assets/Tag-Icons/1.png" >Ué, o que houve?</option>
 		<option value="02" data-image="/assets/Tag-Icons/2.png">Socorro!</option>
 		<option value="03" data-image="/assets/Tag-Icons/3.png">Por que não funciona?</option>
@@ -204,35 +204,49 @@
    <a href="#" onclick="setVideoTime(<%= tag.start %>)"> <%= tag.start %> </a></div> 
   <div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
   <a href="#" onclick="setVideoTime(<%= tag.finish %>)"> <%= tag.finish %> </a> </div> 
-  <div style="display: inline; float: left; width:30%"> <label>Observa&ccedil;&atilde;o:</label> 
+  <div style="display: inline; float: left; width:30%; padding-right:10px"> <label>Observa&ccedil;&atilde;o:</label> 
     <%= tag.obs %> </div> 
   <div style="display: inline; float: left; width:20%">   <label>Avaliador</label> <br /> 
     <%= tag.user.name %> </div> 
-   <div style="display: inline; float: left; width:10%">   <label></label> <br /> 
+   <div style="display: inline; float: left; width:10%">  
 
 	<% if (current_user.has_role? :admin) or (tag.user_id ==  current_user.id )  or (@project.user.id ==  current_user.id )%>
+	 <label></label> <br /> 
 	<%= link_to 'Excluir', tag, method: :delete, data: { confirm: 'Tem Certeza?' } %>  ||
  	 <%= link_to 'Editar', edit_tag_path(tag) %>
+	
+	<% else %>
+	<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= tag.user.avatar.url%> width="80px" height="80px" </img>
+	</div>
+
 	<% end %>
 
      </div> 
 
   <br /><br />
-  <hr width="100%">
+  
  </td>
  </tr>
- </div>
+ <tr>
+ 	<td>
+ 	<hr style="" width="100%">
+ 	</td>
+ 
+ </tr>	
+
+
 
 <% end %>
 
 </table>
 
- 	
+ 	 </div>
 	</fieldset>
 
 
 </div>  	
-</div>
+
 
 
 
@@ -273,16 +287,16 @@
 		<% end %>
 
 
-
+	<b> <%= link_to 'Voltar para minhas avaliações', projects_path %> <b>
  	
 	</fieldset>
-
+</div>
 
 </div>  	
 
 <br />
 
-<b> <%= link_to 'Voltar para minhas avaliações', projects_path %> <b>
+
 
 
 <!-- Script for the combo with images -->
