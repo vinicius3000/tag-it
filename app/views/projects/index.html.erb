@@ -79,7 +79,7 @@
 
               <%# @projects = Project.where("id > 23") %>
 
-              <% @projects = Project.joins('LEFT OUTER JOIN projectparticipants').where("projects.user_id = ? or projectparticipants.user_id = ?",
+              <% @projects = Project.joins('LEFT OUTER JOIN projectparticipants').where("projects.user_id = ? or (projectparticipants.user_id = ? and projectparticipants.project_id = Projects.id)",
               current_user.id, current_user.id).uniq %>
               
               <%# @tags.each do |tag| -%>
