@@ -10,5 +10,25 @@ rescue_from  ActiveRecord::RecordNotFound, :with => :rescue_not_found
 def rescue_not_found  
   flash[:error] = "A pagina que voce tentou acessar nao existe ou este projeto nao pertence a voce!"  
   redirect_to "/"  
-end  
+end 
+
+ def to_minutes(seconds)
+  
+  m = (seconds/60).floor
+  s = (seconds - (m * 60)).round
+ 
+  # add leading zero to one-digit minute
+  if m < 10
+   m = "0#{m}"
+  end
+  # add leading zero to one-digit second
+  if s < 10
+   s = "0#{s}"
+   end
+  # return formatted time
+  return "#{m}:#{s}"
+ end
+
+ helper_method :to_minutes
+
 end
