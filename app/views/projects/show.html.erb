@@ -7,6 +7,7 @@
 <!-- </msdropdown> -->
 
 
+<% if user_signed_in? %>
 <!-- Tab 3 - Etiquetagem -->
 
 <!-- Div for the video -->
@@ -37,7 +38,8 @@
 
 
 
-		<%= form_for(Tag.new, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
+
+		<%= form_for(Tag.new, remote: true, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
 						  
 		<%= f.hidden_field :project_id, :value => @project.id %>
 
@@ -61,18 +63,18 @@
 		<%= f.hidden_field :user_id, :value => current_user.id %>
 
 		 <dl>
-			<dt><%= f.label :Inicio %></dt>
+			<dt><%= f.label 'Início (Segundos)'  %></dt>
 			<dd> 
 				<img src="/assets/Tag-Icons/getTime.jpg" onclick="getCurrentStartTime()" style="width:30px; float:left;"  title="Clique para obter o tempo atual do video!" ></img> 
-				<%= f.text_field :start %> </dd>
+				<%= f.number_field :start %> </dd>
 		</dl>
 
 		<dl>
-			<dt> <%= f.label :Fim %></dt>
+			<dt> <%= f.label 'Fim (Segundos)' %></dt>
 			<dd>
 				<img src="/assets/Tag-Icons/getTime.jpg" onclick="getCurrentFinishTime()" style="width:30px; float:left;"  title="Clique para obter o tempo atual do video!" ></img> 
 
-				<%= f.text_field :finish %> 
+				<%= f.number_field :finish %> 
 			</dd>
 		</dl>
 
@@ -80,6 +82,7 @@
 			<dt> <%= f.label :Observação %> </dt>
 			<dd>  <%= f.text_area :obs , :rows => "4", :style => "width:260px" %> </dd>
 		</dl>	
+		<p id="notice"><%= notice %></p>
 
 		 <dl>
 			<dd>  <%= f.submit :Criar%> </dd>
@@ -179,71 +182,38 @@
 
 
 <div class="row" style="padding-top:0px">
-  <div class="span12">
+  <div class="span12" >
 
-	<fieldset height="537px">
+
+
+<fieldset height="537px">
 		<legend>Etiquetas</legend>
 
+<select id = "whosetags">
+<option  selected value="mine">Minhas Etiquetas</option>
+<option value="all">Todas as Etiquetas</option>
+</select>
 
-
-<table>
-
-<%#Order tags per start time:%>
-<% @tags = Tag.find(:all, :order => 'start ASC', :conditions => ['project_id = ?',  @project.id])%>
-<%#And in the view you can do:%>
-
-<%# @comments.each do |comment| -%>
-
-<%# Tag.find_each(:conditions => ['project_id = ?',  @project.id],  :order => "Start") do |tag| %>
-
-<% @tags.each do |tag| -%>
-<tr>
-<td width="1070">
-<div style="display: inline; float: left; width:90px; height:90px;"><img src="/assets/Tag-Icons/<%= tag.tagid %>.png "></img> </div> 
-  <div style="display: inline; float: left; width:15%"> <label>In&iacute;cio:</label><br /> 
-   <a href="#" onclick="setVideoTime(<%= tag.start %>)"> <%= to_minutes(tag.start) %> </a></div> 
-  <div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
-  <a href="#" onclick="setVideoTime(<%= tag.finish %>)"> <%= to_minutes(tag.finish) %> </a> </div> 
-  <div style="display: inline; float: left; width:30%; padding-right:10px"> <label>Observa&ccedil;&atilde;o:</label> 
-    <%= tag.obs %> </div> 
-  <div style="display: inline; float: left; width:20%">   <label>Avaliador</label> <br /> 
-    <%= tag.user.name %> </div> 
-   <div style="display: inline; float: left; width:10%">  
-
-	<% if (current_user.has_role? :admin) or (tag.user_id ==  current_user.id )  or (@project.user.id ==  current_user.id )%>
-	 <label></label> <br /> 
-	<%= link_to 'Excluir', tag, method: :delete, data: { confirm: 'Tem Certeza?' } %>  ||
- 	 <%= link_to 'Editar', edit_tag_path(tag) %>
-	
-	<% else %>
-	<div class="divAvatar" style="display:inline; float:right">
-				<img src=<%= tag.user.avatar.url%> width="80px" height="80px" </img>
-	</div>
-
-	<% end %>
-
-     </div> 
-
-  <br /><br />
-  
- </td>
- </tr>
- <tr>
- 	<td>
- 	<hr style="" width="100%">
- 	</td>
- 
- </tr>	
+<br />
+<br />
 
 
 
-<% end %>
+<div id="div_my_tags">
 
-</table>
+<%= render "projects/projtagsmine", :tags => @tags, :project => @project %>
 
- 	 </div>
-	</fieldset>
+</div>
 
+
+<div id="div_tags"  display="none">
+
+<%= render "projects/projtags", :tags => @tags, :project => @project %>
+
+</div>
+
+
+</fieldset>
 
 </div>  	
 
@@ -294,6 +264,14 @@
 
 </div>  	
 
+<%else%>
+	
+	  <script type="text/javascript">
+	    window.location.href="/"  // put your correct path in a string here
+	  </script>
+	
+<%end%>
+
 <br />
 
 
@@ -304,6 +282,24 @@
 <script>
 
 $(document).ready(function(e) {		
+
+
+	//select tags
+ 	$("select#whosetags").bind("change",function() {
+         if ($(this).val() == "all"){
+          $("div#div_tags").show(); 
+          $("div#div_my_tags").hide(); 
+          }
+         else
+         {
+          $("div#div_tags").hide(); 
+          $("div#div_my_tags").show(); 
+      	 }
+       })
+ 
+
+
+
 	//no use
 	try {
 		var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
@@ -347,7 +343,13 @@ $("#tech").change(function() {
 	console.log("by jquery: ", this.value);
 })
 //
+
+
 </script>
+
+
+
+
 
 </body>
 </html>

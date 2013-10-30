@@ -1,0 +1,12 @@
+
+$('#div_tags').html("<%= escape_javascript(render(:partial => 'projects/projtags')).html_safe %>");
+
+var tagFinish=document.getElementById("tag_finish");
+var tagStart=document.getElementById("tag_start");
+var tagObs=document.getElementById("tag_obs");
+
+tagObs.value = "";
+tagStart.value = "";
+tagFinish.value = "";
+
+$("#notice").html("<font color='red'>Etiqueta NÃO Criada! Preencha todos os campos corretamente!</font>");

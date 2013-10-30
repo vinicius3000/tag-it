@@ -18,6 +18,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
+      format.pdf { render :layout => false }
     end
   end
 
@@ -99,6 +100,11 @@ class ProjectsController < ApplicationController
     end
 
 
+  end
+
+
+
+
     def to_minutes(seconds)
   
       m = (seconds/60).floor
@@ -117,6 +123,6 @@ class ProjectsController < ApplicationController
      end
 
      helper_method :to_minutes
-     
-  end
+
+
 end

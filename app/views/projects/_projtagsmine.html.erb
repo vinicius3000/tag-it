@@ -1,0 +1,54 @@
+<table>
+
+
+<% tags = Tag.find(:all, :order => 'start ASC', :conditions => ['project_id = ? AND user_id = ?',  @project.id, current_user.id])%>
+
+
+<% tags.each do |tag| -%>
+
+
+
+<tr>
+<td width="1070">
+<div style="display: inline; float: left; width:90px; height:90px;"><img src="/assets/Tag-Icons/<%= tag.tagid %>.png "></img> </div> 
+  <div style="display: inline; float: left; width:15%"> <label>In&iacute;cio:</label><br /> 
+   <a href="#" onclick="setVideoTime(<%= tag.start %>)"> <%= to_minutes(tag.start) %> </a></div> 
+  <div style="display: inline; float: left; width:15%"> <label>Fim: </label><br />
+  <a href="#" onclick="setVideoTime(<%= tag.finish %>)"> <%= to_minutes(tag.finish) %> </a> </div> 
+  <div style="display: inline; float: left; width:30%; padding-right:10px"> <label>Observa&ccedil;&atilde;o:</label> 
+    <%= tag.obs %> </div> 
+  <div style="display: inline; float: left; width:20%">   <label>Avaliador</label> <br /> 
+    <%= tag.user.name %> </div> 
+   <div style="display: inline; float: left; width:10%">  
+	
+	<% if (current_user.has_role? :admin) or (tag.user_id ==  current_user.id )  or (@project.user.id ==  current_user.id )%>
+
+	 <label></label> <br /> 
+	<%= link_to 'Excluir', tag, method: :delete, :remote => true,  data: { confirm: 'Tem Certeza?' } %>  ||
+ 	 <%= link_to 'Editar', edit_tag_path(tag) %>
+	
+	<% else %>
+	<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= tag.user.avatar.url%> width="80px" height="80px" </img>
+	</div>
+
+	<% end %>
+
+     </div> 
+
+  <br /><br />
+  
+ </td>
+ </tr>
+ <tr>
+ 	<td>
+ 	<hr style="" width="100%">
+ 	</td>
+ 
+ </tr>	
+
+
+
+<% end %>
+
+</table>

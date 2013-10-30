@@ -2,7 +2,7 @@ function getCurrentStartTime()
 {
 var tagFinish=document.getElementById("tag_start");
 var mediaElement = document.getElementById('myTaggedVideo');
-var varSeconds = mediaElement.currentTime 
+var varSeconds = Math.floor(mediaElement.currentTime);
 
 tagFinish.value = varSeconds;
 }
@@ -11,7 +11,7 @@ function getCurrentFinishTime()
 {
 var tagFinish=document.getElementById("tag_finish");
 var mediaElement = document.getElementById('myTaggedVideo');
-var varSeconds = mediaElement.currentTime 
+var varSeconds = Math.floor(mediaElement.currentTime);
 
 tagFinish.value = varSeconds;
 }

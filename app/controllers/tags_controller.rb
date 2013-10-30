@@ -46,9 +46,11 @@ class TagsController < ApplicationController
   def create
     session[:return_to]=nil 
 
+
     @project_project_id = params[:project_id]
     @user_user_id = params[:user_id]
     @tag = Tag.new(params[:tag])
+    @project = @tag.project
 
     session[:return_to] ||= request.referer
 
@@ -57,9 +59,11 @@ class TagsController < ApplicationController
       if @tag.save
         format.html { redirect_to session[:return_to], notice: 'Tag criada!' }
         format.json { render json: @tag, status: :created, location: @tag }
+        format.js 
       else
         format.html { render action: "new" }
         format.json { render json: @tag.errors, status: :unprocessable_entity }
+        format.js { render :action => "create_error" }
       end
     end
   end
@@ -96,14 +100,16 @@ class TagsController < ApplicationController
     respond_to do |format|
        format.html { redirect_to session[:return_to], notice: 'Tag excluida!' }
       format.json { head :no_content }
+      format.js  { render :action => "destroy" }
     end
     else
     session[:return_to] ||= request.referer
 
 
     respond_to do |format|
-       format.html { redirect_to session[:return_to], alert: 'Esta tag nao pertence a voce e voce nao e dono deste projeto!' }
+      format.html { redirect_to session[:return_to], alert: 'Esta tag nao pertence a voce e voce nao e dono deste projeto!' }
       format.json { head :no_content }
+      format.js 
     end
     end
 

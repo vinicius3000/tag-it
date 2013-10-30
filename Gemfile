@@ -29,4 +29,3 @@ gem 'database_cleaner', '>= 0.8.0', :group => :test
 gem 'launchy', '>= 2.1.2', :group => :test
 gem 'capybara', '>= 1.1.2', :group => :test
 gem 'factory_girl_rails', '>= 4.1.0', :group => [:development, :test]
-
