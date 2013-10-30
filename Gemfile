@@ -20,6 +20,7 @@ group :assets do
   gem 'bootstrap-sass', '>= 2.1.0.0'
   gem 'font-awesome-sass-rails'
   gem "paperclip", "~> 3.0"
+  gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 end
 
 gem 'devise', '>= 2.1.2'
