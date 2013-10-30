@@ -1,4 +1,3 @@
-
 <!-- Scripts for combobox img -->
 <script src="../assets/jquery-1.9.0.min.js"></script>
 <!-- <msdropdown> -->
@@ -13,6 +12,10 @@
 <!-- Div for the video -->
 <div class="row"style="padding-top:0px; padding-bottom:0px" >
   <div class="span6"  >
+
+
+<!-- PROJECT VIDEO  ##################################-->
+
 <fieldset height="537px">
 
 	<legend><%= @project.name %></legend>
@@ -29,7 +32,12 @@
 					
 </fieldset>
 </div>
-  <div class="span3"><fieldset height="537px">
+  <div class="span3">
+
+
+<!-- NEW TAG  ##################################-->
+
+ <fieldset height="537px">
 
 		<legend>Nova Etiqueta</legend>
 
@@ -96,6 +104,10 @@
 	</fieldset>
 </div>
   <div class="span3">
+
+
+<!-- ADD COLABORATORS  ##################################-->
+
 
   	<fieldset height="537px">
 
@@ -185,6 +197,7 @@
   <div class="span12" >
 
 
+<!-- TAGS  ##################################-->
 
 <fieldset height="537px">
 		<legend>Etiquetas</legend>
@@ -197,6 +210,12 @@
 <br />
 <br />
 
+<a href="" onclick="RefreshTags()">Atualizar todas</a>
+
+<br />
+<br />
+
+
 
 
 <div id="div_my_tags">
@@ -206,7 +225,7 @@
 </div>
 
 
-<div id="div_tags"  display="none">
+<div id="div_tags"  style="display:none">
 
 <%= render "projects/projtags", :tags => @tags, :project => @project %>
 
@@ -216,6 +235,7 @@
 </fieldset>
 
 </div>  	
+</div>
 
 
 
@@ -224,6 +244,8 @@
 
 
 <div style="display:block">
+
+<!-- DETAILS  ##################################-->
 
 	<fieldset height="537px">
 		<legend>Detalhes da Avaliação</legend>
@@ -335,6 +357,13 @@ $("#tech").change(function() {
 
 
 <script>
+
+
+function RefreshTags() {
+$('#div_tags').html("<%= escape_javascript(render(:partial => 'projects/projtags')).html_safe %>");
+$('#div_my_tags').html("<%= escape_javascript(render(:partial => 'projects/projtagsmine')).html_safe %>");
+$("#notice").html("Etiquetas Atualizadas!");
+}
 
 function showValue(h) {
 	console.log(h.name, h.value);

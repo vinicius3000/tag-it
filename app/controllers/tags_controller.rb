@@ -100,7 +100,7 @@ class TagsController < ApplicationController
     respond_to do |format|
        format.html { redirect_to session[:return_to], notice: 'Tag excluida!' }
       format.json { head :no_content }
-      format.js  { render :action => "destroy" }
+      format.js
     end
     else
     session[:return_to] ||= request.referer
