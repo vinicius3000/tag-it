@@ -10,6 +10,7 @@ end
 group :development, :test do
   gem "sqlite3"
 end
+
 gem 'carrierwave'
 
 group :assets do
