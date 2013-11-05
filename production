@@ -1,0 +1,47 @@
+Running `rake db:migrate =` attached to terminal... up, run.7146
+
+DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/1/4/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at /app/Rakefile:7)
+DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/1/4/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at /app/Rakefile:7)
+rake aborted!
+Devise.secret_key was not set. Please add the following to your Devise initializer:
+
+  config.secret_key = 'be7a4b07a9154243b8390be7726e548777ada74c7b5d4bf05e28a7e4019452e1d8724c3a04e852a3e8936c46b578d5a5d31defe56f0b62d914a9c6d16cb2e4e8'
+
+Please ensure you restarted your application after installing Devise or setting the key.
+/app/vendor/bundle/ruby/1.9.1/gems/devise-3.1.1/lib/devise/rails/routes.rb:446:in `raise_no_secret_key'
+/app/vendor/bundle/ruby/1.9.1/gems/devise-3.1.1/lib/devise/rails/routes.rb:195:in `devise_for'
+/app/config/routes.rb:15:in `block in <top (required)>'
+/app/vendor/bundle/ruby/1.9.1/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:282:in `instance_exec'
+/app/vendor/bundle/ruby/1.9.1/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:282:in `eval_block'
+/app/vendor/bundle/ruby/1.9.1/gems/actionpack-3.2.9/lib/action_dispatch/routing/route_set.rb:260:in `draw'
+/app/config/routes.rb:2:in `<top (required)>'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:245:in `load'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:245:in `block in load'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:236:in `load_dependency'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:245:in `load'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:40:in `block in load_paths'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:40:in `each'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:40:in `load_paths'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:16:in `reload!'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:26:in `block in updater'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/file_update_checker.rb:78:in `call'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/file_update_checker.rb:78:in `execute'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:27:in `updater'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/routes_reloader.rb:7:in `execute_if_updated'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application/finisher.rb:66:in `block in <module:Finisher>'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/initializable.rb:30:in `instance_exec'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/initializable.rb:30:in `run'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/initializable.rb:55:in `block in run_initializers'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/initializable.rb:54:in `each'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/initializable.rb:54:in `run_initializers'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application.rb:136:in `initialize!'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/railtie/configurable.rb:30:in `method_missing'
+/app/config/environment.rb:5:in `<top (required)>'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:251:in `require'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:251:in `block in require'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:236:in `load_dependency'
+/app/vendor/bundle/ruby/1.9.1/gems/activesupport-3.2.9/lib/active_support/dependencies.rb:251:in `require'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application.rb:103:in `require_environment!'
+/app/vendor/bundle/ruby/1.9.1/gems/railties-3.2.9/lib/rails/application.rb:297:in `block (2 levels) in initialize_tasks'
+Tasks: TOP => db:migrate => environment
+(See full trace by running task with --trace)
