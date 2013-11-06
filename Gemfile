@@ -6,15 +6,13 @@ gem 'rails', '3.2.9'
 gem 'rails_12factor'
 
 group :production do
-  gem 'thin'
-end
-
-group :production do
   gem "pg"
+  gem 'thin'
 end
 
 group :development, :test do
   gem "sqlite3"
+  gem "pg"
 end
 
 #gem 'carrierwave'
