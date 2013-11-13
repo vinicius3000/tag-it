@@ -21,7 +21,11 @@ test: &test
 
 production:
   adapter: postgresql
-  database: tagitpostgree
+  database: d119cakihe65q3
+  user: utpassnhbdwxah
+  password: ZtpkJccKYXswr_AQstc6EWAPHW
+  port: 5432
+  host: ec2-54-235-113-246.compute-1.amazonaws.com
   pool: 5
   timeout: 5000
 
