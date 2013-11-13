@@ -5,7 +5,6 @@ ruby '1.9.3'
 gem 'rails', '3.2.9'
 
 group :production do
-  rails generate devise:install
   gem "pg"
   gem 'thin'
   gem 'rails_12factor', '0.0.2'
