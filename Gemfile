@@ -5,14 +5,14 @@ ruby '1.9.3'
 gem 'rails', '3.2.9'
 
 group :production do
-  gem "pg"
+  #gem "pg"
   gem 'thin'
   gem 'rails_12factor', '0.0.2'
 end
 
 group :development, :test do
   gem "sqlite3"
-  gem "pg"
+  #gem "pg"
 end
 
 #gem 'carrierwave'
