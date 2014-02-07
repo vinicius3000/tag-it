@@ -79,14 +79,14 @@
 
               <%# @projects = Project.where("id > 23") %>
 
-               <% if (current_user.has_role? :admin) %>
+               <%# if (current_user.has_role? :admin) %>
                
-               <% @projects = Project.uniq %>
+               <%# @projects = Project.uniq %>
 
-              <%else%>
+              <%# else%>
               <% @projects = Project.joins('LEFT OUTER JOIN projectparticipants').where("projects.user_id = ? or (projectparticipants.user_id = ? and projectparticipants.project_id = Projects.id)",
               current_user.id, current_user.id).uniq %>
-              <%end%>
+              <%# end%>
 
 
               <% @projects.each do |project| %>
