@@ -57,6 +57,15 @@
       
 
   <div >
+
+    <% if (current_user.has_role? :admin) %>
+    <select id = "whoseprojs">
+    <option  selected value="mine">Avaliações que eu faço parte</option>
+    <option value="all">Todas as Avaliações na Tag-it</option>
+    </select>
+    <% end %>
+
+		<div id="my_projects">
           <div id="folders" >
             
             <ul class="clearfix">
@@ -113,19 +122,28 @@
                       <div class="j-icon j-icon-gear-black"></div>
                     </a>
                   </div>
-
               </li>
-    
+
+		<% end %>
+
+  </ul>
+	</div>
+</div>
 
 
-<% end %>
+      <% if (current_user.has_role? :admin) %>
 
 
-              
 
-              
-            </ul>
-          </div>
+      <div id="all_projects">
+
+      <%= render "projects/allprojs", :tags => @tags, :project => @project %>
+
+      </div>
+
+      <% end %>
+
+
       </div>
   </div>
 
@@ -140,6 +158,22 @@
 
 
 $(document).ready(function() {  
+
+  //select whose projects
+  $("select#whoseprojs").bind("change",function() {
+         if ($(this).val() == "all"){
+          $("div#all_projects").show(); 
+          $("div#my_projects").hide(); 
+          }
+         else
+         {
+          $("div#all_projects").hide(); 
+          $("div#my_projects").show(); 
+         }
+       })
+ 
+
+
 
   $('a[name=modal]').click(function(e) {
     e.preventDefault();
