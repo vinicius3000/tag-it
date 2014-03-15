@@ -44,7 +44,7 @@
                       <% end %>
                    </div>
                   <div style = "float:left; width:240px">
-                     <b> <a href="/projects/<%= project.id %>" ><%= project.goal %> - <i> por <% if project.user.name %>
+                     <b> <a href="/projects/<%= project.id %>" ><%= project.goal %> - <i> por <% if project.user %>
   <%= project.user.name %> <% end %> </i></a></b>
                    </div>
                   
