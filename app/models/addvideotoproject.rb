@@ -1,4 +1,4 @@
-class Addvideotoproject < ActiveRecord::Migration
+class AddVideoToProject < ActiveRecord::Migration
   def self.up
     add_column :projects, :video_file_name, :string # Original filename
     add_column :projects, :video_content_type, :string # Mime type

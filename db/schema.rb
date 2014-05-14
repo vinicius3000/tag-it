@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140514172046) do
+ActiveRecord::Schema.define(:version => 20130908143303) do
 
   create_table "data_files", :force => true do |t|
     t.datetime "created_at", :null => false
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(:version => 20140514172046) do
     t.string   "video_content_type"
     t.integer  "video_file_size"
     t.datetime "video_updated_at"
-    t.string   "TeacherComments"
   end
 
   add_index "projects", ["user_id"], :name => "index_projects_on_user_id"
