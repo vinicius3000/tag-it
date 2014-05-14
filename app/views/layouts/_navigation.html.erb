@@ -31,10 +31,10 @@
 					<ul class="nav nav-tabs" width="100%" >
 
 					<li onclick="#navbar-fixed-Proj">
-						<%= link_to('Minhas Avaliações', projects_path) %>
+						<%= link_to(t(:my_projects), projects_path) %>
 					</li>
 					<li>
-						<%= link_to('Ajuda', '/help') %>
+						<%= link_to(t(:help), '/help') %>
 					</li>
 					<% if current_user.has_role? :admin %>
 					<li>
@@ -48,11 +48,11 @@
 					
 
 						<li>
-						<%= link_to('Editar Conta' , edit_user_registration_path) %> 
+						<%= link_to(t(:edit_account) , edit_user_registration_path) %> 
 					</li>
 					
 					<li>
-						<%= link_to 'Sair ('+ current_user.name + ')'.html_safe, destroy_user_session_path, :method=>'delete', :title => 'Sair' , :rel => 'tooltip' %> 
+						<%= link_to t(:exit) +' ('+ current_user.name + ')'.html_safe, destroy_user_session_path, :method=>'delete', :title => 'Sair' , :rel => 'tooltip' %> 
 					</li>
 
 
@@ -61,11 +61,12 @@
 
 
 		<% else %>
+
 				<ul class="nav nav-tabs" width="100%" >
-				<li><a href="#navbar-fixed-Start" data-toggle="tab"><strong>Comece Aqui</strong></a></li>
-				<li><a href="#navbar-fixed-Mac" data-toggle="tab"><strong>O MAC</strong></a></li>
-				<li><a href="#navbar-fixed-Ref" data-toggle="tab"><strong>Material de Apoio</strong></a></li>
-				<li><a href="#navbar-fixed-Help" data-toggle="tab"><strong>Ajuda</strong></a></li>
+				<li><a href="#navbar-fixed-Start" data-toggle="tab"><strong> <%= t(:start_here) %> </strong></a></li>
+				<li><a href="#navbar-fixed-Mac" data-toggle="tab"><strong> <%= t(:MAC) %> </strong></a></li>
+				<li><a href="#navbar-fixed-Ref" data-toggle="tab"><strong><%= t(:support_material) %> </strong></a></li>
+				<li><a href="#navbar-fixed-Help" data-toggle="tab"><strong><%= t(:help) %> </strong></a></li>
 				
 				</ul>
 
@@ -74,10 +75,10 @@
 					
 
 					<li>
-						<%= link_to 'Entrar'.html_safe, new_user_session_path,  :title => 'Signin', :rel => 'tooltip' %>
+						<%= link_to t(:login).html_safe, new_user_session_path,  :title => 'Signin', :rel => 'tooltip' %>
 					</li>
 					<li>
-						<%= link_to('Registrar', new_user_registration_path)  %>
+						<%= link_to(t(:signin), new_user_registration_path)  %>
 					</li>
 
 

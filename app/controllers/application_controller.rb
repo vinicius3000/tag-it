@@ -1,3 +1,5 @@
+#!/bin/env ruby
+# encoding: utf-8
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
@@ -6,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
 rescue_from  ActiveRecord::RecordNotFound, :with => :rescue_not_found  
-  
+
 def rescue_not_found  
   flash[:error] = "A pagina que voce tentou acessar nao existe ou este projeto nao pertence a voce!"  
   redirect_to "/"  
@@ -31,4 +33,10 @@ end
 
  helper_method :to_minutes
 
+before_filter :set_locale
+end
+
+ 
+def set_locale
+  I18n.locale = params[:locale] || I18n.default_locale
 end

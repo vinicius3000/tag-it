@@ -1,4 +1,14 @@
 pt-BR:
+  my_projects: "Minhas Avaliações"
+  help: "Ajuda"
+  edit_account: "Editar Conta"
+  exit: "Sair"
+  click_here_for_new_project: "Clique aqui para criar uma nova avaliação"
+  login: "Entrar"
+  logout: "Sair"
+  signin: "Registrar"
+  start_here: "Comece Aqui"
+  support_material: "Material de Apoio"
   date:
     abbr_day_names:
     - Dom
@@ -35,7 +45,6 @@ pt-BR:
       long: ! '%d de %B de %Y'
       short: ! '%d de %B'
     month_names:
-    -
     - Janeiro
     - Fevereiro
     - Março
