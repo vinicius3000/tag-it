@@ -1,0 +1,14 @@
+digraph models_diagram {
+	graph[overlap=false, splines=true]
+	"Project" [shape=Mrecord, label="{Project|id :integer\lname :string\lgoal :text\luser_id :integer\lcreated_at :datetime\lupdated_at :datetime\lproject :string\lvideo_file_name :string\lvideo_content_type :string\lvideo_file_size :integer\lvideo_updated_at :datetime\l|show() : void\lnew() : void\lupdate() : void\ledit() : void\lcreate() : void\ldestroy() : void\lto_minutes() : seconds\l}"]
+
+	"Projectparticipant" [shape=Mrecord, label="{Projectparticipant|id :integer\lcreated_at :datetime\lupdated_at :datetime\lproject_id :decimal\luser_id :decimal\l|show() : void\lupdate() : void\lcreate() : void\ldestroy() : void\l}"]
+
+	"Tag" [shape=Mrecord, label="{Tag|id :integer\ltagid :integer\lobs :string\lstart :integer\lfinish :integer\lcreated_at :datetime\lupdated_at :datetime\lproject_id :integer\luser_id :integer\l|show() : void\lnew() : void\lupdate() : void\ledit() : void\lcreate() : void\ldestroy() : void\l}"]
+	"User" [shape=Mrecord, label="{User|id :integer\lemail :string\lencrypted_password :string\lreset_password_token :string\lreset_password_sent_at :datetime\lremember_created_at :datetime\lsign_in_count :integer\lcurrent_sign_in_at :datetime\llast_sign_in_at :datetime\lcurrent_sign_in_ip :string\llast_sign_in_ip :string\lcreated_at :datetime\lupdated_at :datetime\lname :string\lavatar_file_name :string\lavatar_content_type :string\lavatar_file_size :integer\lavatar_updated_at :datetime\lavatar :\lcollege :string\lfunction :string\lcourse :string\l|show() : void\lcreate() : void\lupdate() : void\ledit() : void\lcreate() : void\ldestroy() : void\l}"]
+	"Project" -> "Projectparticipant" [arrowtail=odot, arrowhead=crow, dir=both color="#343DE5"]
+	"User" -> "Projectparticipant" [arrowtail=odot, arrowhead=crow, dir=both color="#1786E8"]
+	"User" -> "Project" [arrowtail=odot, arrowhead=crow, dir=both color="#DAD4A6"]
+	"User" -> "Tag" [arrowtail=odot, arrowhead=crow, dir=both color="#3073C6"]
+	"Project" -> "Tag" [arrowtail=odot, arrowhead=crow, dir=both color="#3073C6"]
+}

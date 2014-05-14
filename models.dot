@@ -1,0 +1,10 @@
+digraph controllers_diagram {
+	graph[overlap=false, splines=true]
+	"ApplicationController" [shape=Mrecord, label="{ApplicationController|_one_time_conditions_valid_100?\lrescue_not_found\lto_minutes\l|\l|_layout\l}"]
+	"HomeController" [shape=Mrecord, label="{HomeController|devise_mapping\lhelp\lindex\lwelcome\l|\l|_layout\l}"]
+	"ProjectparticipantsController" [shape=Mrecord, label="{ProjectparticipantsController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\l}"]
+	"ProjectsController" [shape=Mrecord, label="{ProjectsController|create\ldestroy\ledit\lindex\lnew\lshow\lto_minutes\lupdate\l|\l|_layout\l}"]
+	"TagsController" [shape=Mrecord, label="{TagsController|create\ldestroy\ledit\lindex\lnew\lshow\lupdate\l|\l|_layout\l}"]
+	"UploadController" [shape=Mrecord, label="{UploadController|index\luploadFile\l|\l|_layout\l}"]
+	"UsersController" [shape=Mrecord, label="{UsersController|_one_time_conditions_valid_166?\lcreate\ldestroy\lindex\lshow\lupdate\l|\l|_layout\l}"]
+}

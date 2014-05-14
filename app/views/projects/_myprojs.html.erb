@@ -1,0 +1,64 @@
+          <div id="folders" >
+            
+            <ul class="clearfix">
+              <li class="folder new">
+                <a href="#dialog" name="modal" ></a>
+
+               <div class="bottom clearfix proxima-thin">
+                  <div class="left">
+                    
+                  <div style = "float:left;">
+                     <b>Clique aqui para criar uma nova avaliação</b>
+                   </div>
+                  
+                  </div>
+              </li>
+
+
+
+              <%# @projects = Project.find(:all, :order => 'id ASC', :conditions => ['s.user_id = ?', current_user.id])%>
+
+              <%# @projects = Project.where("id > 23") %>
+
+               <%# if (current_user.has_role? :admin) %>
+               
+               <%# @projects = Project.uniq %>
+
+              <%# else%>
+              <% @projects = Project.joins('LEFT OUTER JOIN projectparticipants').where("projects.user_id = ? or (projectparticipants.user_id = ? and projectparticipants.project_id = Projects.id)",
+              current_user.id, current_user.id).uniq %>
+              <%# end%>
+
+
+              <% @projects.each do |project| %>
+              <li class="folder">
+              <a href="/projects/<%= project.id %>" >
+                  <h3 class="folder-name"> <%= project.name %></h3>
+                </a>
+                <div class="bottom clearfix proxima-thin">
+                  <div class="left">
+                    <div style = "float:right; width:50px">
+
+                      <% if (current_user.has_role? :admin) or (project.user_id == current_user.id) %>
+                        <%= link_to 'Excluir', project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
+                      <% end %>
+                   </div>
+                  <div style = "float:left; width:240px">
+                     <b> <a href="/projects/<%= project.id %>" ><%= project.goal %> - <i> por <% if project.user %>
+  <%= project.user.name %> <% end %> </i></a></b>
+                   </div>
+                  
+                  </div>
+
+                <div class="btn-group dropdown pull-right">
+                   <a class="btn-link dropdown-toggle" data-toggle="dropdown" href="#">
+                      <div class="j-icon j-icon-gear-black"></div>
+                    </a>
+                  </div>
+              </li>
+
+    <% end %>
+
+  </ul>
+
+</div>

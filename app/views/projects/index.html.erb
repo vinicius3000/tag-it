@@ -2,130 +2,85 @@
 
 <div id="boxes">
 
-<div id="dialog" class="window">
+  <div id="dialog" class="window">
+          
+        <a href="#" class="close">[X]</a>
+        <legend>Nova Avaliação </legend>
 
+
+
+        <%= form_for(Project.new, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
+          
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+
+        
+        <dl>
+          <dt><%= f.label :Video %>
+
+        
+          <span title="H264 é a codificação de arquivos .MP4 que pode ser reproduzida em HTML5, tecnologia utilizada pela Tag-it"><b>Atenção: o vídeo deve ser gravado em MP4 com codificação H264</b> </span>
+
+          <br />
+        </dt>
+          <dd>  <%= f.file_field :video, :required => true %> </dd>
+        </dl>
+
+
+         <dl>
+          <dt><%= f.label :"Nome da Avaliação" %></dt>
+          <dd>  <%= f.text_field :name %> </dd>
+        </dl>
+
+         <dl>
+          <dt> <%= f.label :Objetivo %> </dt>
+          <dd>  <%= f.text_area :goal , :rows => "4" %> </dd>
+        </dl>
+        
+          
+
+
+         <dl>
+          <dd>  <%= f.submit :Criar %> </dd>
+        </dl>
+
+       
+        <% end %>
 
           
-            <a href="#" class="close">[X]</a>
-            <legend>Nova Avaliação </legend>
-
-
-
-            <%= form_for(Project.new, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
-              
-            <%= f.hidden_field :user_id, :value => current_user.id %>
-
             
-            <dl>
-              <dt><%= f.label :Video %>
-
-            
-              <span title="H264 é a codificação de arquivos .MP4 que pode ser reproduzida em HTML5, tecnologia utilizada pela Tag-it"><b>Atenção: o vídeo deve ser gravado em MP4 com codificação H264</b> </span>
-
-              <br />
-            </dt>
-              <dd>  <%= f.file_field :video, :required => true %> </dd>
-            </dl>
-
-
-             <dl>
-              <dt><%= f.label :"Nome da Avaliação" %></dt>
-              <dd>  <%= f.text_field :name %> </dd>
-            </dl>
-
-             <dl>
-              <dt> <%= f.label :Objetivo %> </dt>
-              <dd>  <%= f.text_area :goal , :rows => "4" %> </dd>
-            </dl>
-            
-              
-
-
-             <dl>
-              <dd>  <%= f.submit :Criar %> </dd>
-            </dl>
-
-           
-            <% end %>
-
-          
-          
-</div>
+  </div>
   
 
 <div class="tab-pane" id="navbar-fixed-Organize">
       
 
   <div >
-          <div id="folders" >
-            
-            <ul class="clearfix">
-              <li class="folder new">
-                <a href="#dialog" name="modal" ></a>
 
-               <div class="bottom clearfix proxima-thin">
-                  <div class="left">
-                    
-                  <div style = "float:left;">
-                     <b>Clique aqui para criar uma nova avaliação</b>
-                   </div>
-                  
-                  </div>
-              </li>
+    <% if (current_user.has_role? :admin) %>
+    <select id = "whoseprojs">
+    <option  selected value="mine">Avaliações que eu faço parte</option>
+    <option value="all">Todas as Avaliações na Tag-it</option>
+    </select>
+    <% end %>
+
+	</div>
+
+      <div id="my_projects2" >
+      <%= render "projects/myprojs", :tags => @tags, :project => @project %>
+      </div>
 
 
 
-              <%# @projects = Project.find(:all, :order => 'id ASC', :conditions => ['s.user_id = ?', current_user.id])%>
 
-              <%# @projects = Project.where("id > 23") %>
+      <% if (current_user.has_role? :admin) %>
 
-               <% if (current_user.has_role? :admin) %>
-               
-               <% @projects = Project.uniq %>
+	      <div id="all_projects">
+	      <%= render "projects/allprojs", :tags => @tags, :project => @project %>
+	      </div>
 
-              <%else%>
-              <% @projects = Project.joins('LEFT OUTER JOIN projectparticipants').where("projects.user_id = ? or (projectparticipants.user_id = ? and projectparticipants.project_id = Projects.id)",
-              current_user.id, current_user.id).uniq %>
-              <%end%>
+      <% end %>
 
 
-              <% @projects.each do |project| %>
-              <li class="folder">
-              <a href="/projects/<%= project.id %>" >
-                  <h3 class="folder-name"> <%= project.name %></h3>
-                </a>
-                <div class="bottom clearfix proxima-thin">
-                  <div class="left">
-                    <div style = "float:right; width:50px">
-
-                      <% if (current_user.has_role? :admin) or (project.user_id == current_user.id) %>
-                        <%= link_to 'Excluir', project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
-                      <% end %>
-                   </div>
-                  <div style = "float:left; width:240px">
-                     <b> <a href="/projects/<%= project.id %>" ><%= project.goal %></a></b>
-                   </div>
-                  
-                  </div>
-
-                <div class="btn-group dropdown pull-right">
-                   <a class="btn-link dropdown-toggle" data-toggle="dropdown" href="#">
-                      <div class="j-icon j-icon-gear-black"></div>
-                    </a>
-                  </div>
-
-              </li>
-    
-
-
-<% end %>
-
-
-              
-
-              
-            </ul>
-          </div>
       </div>
   </div>
 
@@ -140,6 +95,23 @@
 
 
 $(document).ready(function() {  
+
+  $("div#all_projects").hide();
+  //select whose projects
+  $("select#whoseprojs").bind("change",function() {
+         if ($(this).val() == "all"){
+          $("div#all_projects").show(); 
+          $("div#my_projects2").hide(); 
+          }
+         else
+         {
+          $("div#all_projects").hide(); 
+          $("div#my_projects2").show(); 
+         }
+       })
+ 
+
+
 
   $('a[name=modal]').click(function(e) {
     e.preventDefault();
