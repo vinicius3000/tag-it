@@ -266,10 +266,27 @@
 <% if (current_user.function == 'Professor') %>
 <fieldset>
 	<legend>Opções do Professor</legend>
+
+<% provide(:title, "Editar Projeto") %>
+
+<div>
+  <div >
+    <%= form_for(@project) do |f| %>
+
+      <%= f.label :Comentarios %>
+      <%= f.text_area :TeacherComments, :rows=>"6", :style=>"width:90%" %>
+      <br />
+      <%= f.submit "Salvar" %>
+    <% end %>
+
+  </div>
+</div>
+
 </fieldset>
 <% else %>
 <fieldset>
 	<legend>Comentários do Professor</legend>
+	<font color="red"> <%= @project.TeacherComments%> </font>
 </fieldset>
 <% end %> 
 
