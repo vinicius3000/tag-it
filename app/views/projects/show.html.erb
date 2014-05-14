@@ -123,7 +123,7 @@
 
 		  <ul>
 		      <li>
-		      	<%= f.select :user_id, User.where('function != ?',  'nil').collect {|user| [ user.name + " (" + user.function + ")", user.id ] } %>
+		      	<%= f.select :user_id, User.all.collect {|user| [ user.name, user.id ] } %>
 				
 				<br />
 
@@ -138,31 +138,6 @@
 		 <% end %>
 
 		<table>
-
-		<% Projectparticipant.find_each(:conditions => ['project_id = ?',  @project.id]) do |projectuser| %>
-		<tr>
-		<td>
-			<% if projectuser.user.function == 'Professor' %>
-			<div style="width:280px; display:inline; float:right">
-			<div class="divAvatar" style="display:inline; float:right">
-				<img src=<%= projectuser.user.avatar.url%> width="140px" height="140px" </img>
-			</div>
-
-			<div style="width:90px; display:inline; float:right; padding:15px;"><b><font color="red">Professor</font></b> <br /><%= projectuser.user.name%><br />
-
-					<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
-
-					 <%= link_to 'Remover', projectuser, method: :delete, data: { confirm: 'Tem Certeza?' } %> 
-
-					 <%end%>
-					</div>
-
-
-			</div>
-			</td>
-			</tr>
-			<% end %>
-		<% end %>
 
 		<tr>
 		<td>
@@ -182,7 +157,6 @@
 
 
 		<% Projectparticipant.find_each(:conditions => ['project_id = ?',  @project.id]) do |projectuser| %>
-		<%if projectuser.user.function == 'Aluno'%>
 		<tr>
 		<td>
 			<div style="width:280px; display:inline; float:right">
@@ -204,7 +178,6 @@
 		</td>
 		</tr>
 		<% end %>
-		<% end %>
 
 		</table>
 
@@ -213,8 +186,6 @@
 		
 	
 	</fieldset>
-
-
 
 </div>
 
@@ -262,16 +233,6 @@
 
 
 </fieldset>
-
-<% if (current_user.function == 'Professor') %>
-<fieldset>
-	<legend>Opções do Professor</legend>
-</fieldset>
-<% else %>
-<fieldset>
-	<legend>Comentários do Professor</legend>
-</fieldset>
-<% end %> 
 
 </div>  	
 </div>
