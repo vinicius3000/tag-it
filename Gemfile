@@ -12,9 +12,12 @@ end
 
 group :development, :test do
   gem "sqlite3"
+  gem "rails-erd"
   #gem "pg"
 end
 
+
+  
 #gem 'carrierwave'
 
 group :assets do

@@ -1,20 +1,20 @@
-<h2>Registrar</h2><%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
+<h2><%= t(:new_user)%></h2><%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-vertical' }) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name, :label => "Nome",:autofocus => true %>
-  <%= f.input :email,:label => "E-mail", :required => true %>
+  <%= f.input :name, :label => t(:name),:autofocus => true %>
+  <%= f.input :email,:label => t(:email), :required => true %>
   <b> Sua senha deve ter no mínimo 6 caracteres e nenhum caractere especial! </b>
-  <%= f.input :password, :label => "Senha", :required => true %>
-  <%= f.input :password_confirmation,:label => "Confirme a Senha", :required => true %>
+  <%= f.input :password, :label => t(:password), :required => true %>
+  <%= f.input :password_confirmation,:label => t(:pw_confirmation), :required => true %>
    
   <hr> </hr>
   <select id="function" name="user[function]" style="width:240px;">
-		<option value="Aluno">Aluno</option>
-		<option value="Professor">Professor</option>
+		<option value="Aluno"><%= t(:student)%></option>
+		<option value="Professor"><%= t(:teacher)%></option>
   </select>
 
 
-  <%= f.input :college,:label => "Instituição de Ensino", :required => true %>
-  <%= f.input :course,:label => "Curso", :required => true %>
+  <%= f.input :college,:label => t(:college), :required => true %>
+  <%= f.input :course,:label => t(:course), :required => true %>
 
   
   <div class="divAvatar">
@@ -28,6 +28,6 @@
 
 <hr></hr>
  
-  <%= f.button :submit, 'Registrar', :class => 'btn-primary' %>
+  <%= f.button :submit, t(:create_account), :class => 'btn-primary' %>
 <% end %>
 

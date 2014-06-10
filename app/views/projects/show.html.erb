@@ -53,19 +53,19 @@
 
 
 		<select id="tagid" name="tag[tagid]" style="width:260px;">
-		<option value="1" data-image="/assets/Tag-Icons/1.png" >Ué, o que houve?</option>
-		<option value="02" data-image="/assets/Tag-Icons/2.png">Socorro!</option>
-		<option value="03" data-image="/assets/Tag-Icons/3.png">Por que não funciona?</option>
-		<option value="04" data-image="/assets/Tag-Icons/4.png">Cadê?</option>
-		<option value="05" data-image="/assets/Tag-Icons/5.png">Assim não dá!</option>
-		<option value="06" data-image="/assets/Tag-Icons/6.png">Onde estou?</option>
-		<option value="07" data-image="/assets/Tag-Icons/7.png">E agora?</option>
-		<option value="08" data-image="/assets/Tag-Icons/8.png">O que é isso?</option>
-		<option value="09" data-image="/assets/Tag-Icons/9.png">Epa!</option>
-		<option value="10" data-image="/assets/Tag-Icons/10.png">Não, obrigado!</option>
-		<option value="11" data-image="/assets/Tag-Icons/11.png">Vai de outro jeito.</option>
-		<option value="12" data-image="/assets/Tag-Icons/12.png">Desisto!</option>
-		<option value="13" data-image="/assets/Tag-Icons/13.png">Para mim está bom</option>
+		<option value="1"  data-image="/assets/Tag-Icons/1.png" ><%=t(:tag1 )%></option>
+		<option value="02" data-image="/assets/Tag-Icons/2.png" ><%=t(:tag2 )%></option>
+		<option value="03" data-image="/assets/Tag-Icons/3.png" ><%=t(:tag3 )%></option>
+		<option value="04" data-image="/assets/Tag-Icons/4.png" ><%=t(:tag4 )%></option>
+		<option value="05" data-image="/assets/Tag-Icons/5.png" ><%=t(:tag5 )%></option>
+		<option value="06" data-image="/assets/Tag-Icons/6.png" ><%=t(:tag6 )%></option>
+		<option value="07" data-image="/assets/Tag-Icons/7.png" ><%=t(:tag7 )%></option>
+		<option value="08" data-image="/assets/Tag-Icons/8.png" ><%=t(:tag8 )%></option>
+		<option value="09" data-image="/assets/Tag-Icons/9.png" ><%=t(:tag9 )%></option>
+		<option value="10" data-image="/assets/Tag-Icons/10.png"><%=t(:tag10)%></option>
+		<option value="11" data-image="/assets/Tag-Icons/11.png"><%=t(:tag11)%></option>
+		<option value="12" data-image="/assets/Tag-Icons/12.png"><%=t(:tag12)%></option>
+		<option value="13" data-image="/assets/Tag-Icons/13.png"><%=t(:tag13)%></option>
     	</select>
 
 		<%= f.hidden_field :user_id, :value => current_user.id %>
