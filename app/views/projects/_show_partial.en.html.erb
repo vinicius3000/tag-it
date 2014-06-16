@@ -1,0 +1,440 @@
+<!-- Scripts for combobox img -->
+<script src="../assets/jquery-1.9.0.min.js"></script>
+<!-- <msdropdown> -->
+<link rel="stylesheet" type="text/css" href="../assets/dd.css" />
+<script src="../assetsjquery.dd.js"></script>
+<!-- </msdropdown> -->
+
+
+<% if user_signed_in? %>
+<!-- Tab 3 - Etiquetagem -->
+
+<!-- Div for the video -->
+<div class="row"style="padding-top:0px; padding-bottom:0px" >
+  <div class="span6"  >
+
+
+<!-- PROJECT VIDEO  ##################################-->
+
+<fieldset height="537px">
+
+	<legend><%= @project.name %></legend>
+
+	<video width="100%" height="480"class= "myTaggedVideo" id= "myTaggedVideo" poster="/assets/video.png" controls>
+		  <source src=<%= @project.video.url%> type="video/mp4">
+		  <source src=<%= @project.video.url%> type="video/ogg">
+		  Seu navegador ainda nao suporta videos em HTML 5, baixe o Google Chrome para continuar.
+		<source src=<%= @project.video.url%> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+	</video>
+
+	<p> Sent by <%= @project.user.name %> (<%= @project.id %>) </p>
+
+					
+</fieldset>
+</div>
+  <div class="span3">
+
+
+<!-- NEW TAG  ##################################-->
+
+ <fieldset height="537px">
+
+		<legend>New Tag</legend>
+
+		<div style="float:left">
+
+
+
+
+
+		<%= form_for(Tag.new, remote: true, :html => { :class => 'form-vertical', :multipart => true }) do |f| %>
+						  
+		<%= f.hidden_field :project_id, :value => @project.id %>
+
+
+		<select id="tagid" name="tag[tagid]" style="width:260px;">
+		<option value="1"  data-image="/assets/Tag-Icons/1.png" ><%=t(:tag1 )%></option>
+		<option value="02" data-image="/assets/Tag-Icons/2.png" ><%=t(:tag2 )%></option>
+		<option value="03" data-image="/assets/Tag-Icons/3.png" ><%=t(:tag3 )%></option>
+		<option value="04" data-image="/assets/Tag-Icons/4.png" ><%=t(:tag4 )%></option>
+		<option value="05" data-image="/assets/Tag-Icons/5.png" ><%=t(:tag5 )%></option>
+		<option value="06" data-image="/assets/Tag-Icons/6.png" ><%=t(:tag6 )%></option>
+		<option value="07" data-image="/assets/Tag-Icons/7.png" ><%=t(:tag7 )%></option>
+		<option value="08" data-image="/assets/Tag-Icons/8.png" ><%=t(:tag8 )%></option>
+		<option value="09" data-image="/assets/Tag-Icons/9.png" ><%=t(:tag9 )%></option>
+		<option value="10" data-image="/assets/Tag-Icons/10.png"><%=t(:tag10)%></option>
+		<option value="11" data-image="/assets/Tag-Icons/11.png"><%=t(:tag11)%></option>
+		<option value="12" data-image="/assets/Tag-Icons/12.png"><%=t(:tag12)%></option>
+		<option value="13" data-image="/assets/Tag-Icons/13.png"><%=t(:tag13)%></option>
+    	</select>
+
+		<%= f.hidden_field :user_id, :value => current_user.id %>
+
+		 <dl>
+			<dt><%= f.label 'Start (Seconds)'  %></dt>
+			<dd> 
+				<img src="/assets/Tag-Icons/getTime.jpg" onclick="getCurrentStartTime()" style="width:30px; float:left;"  title="Click to get current time!" ></img> 
+				<%= f.number_field :start %> </dd>
+		</dl>
+
+		<dl>
+			<dt> <%= f.label 'End (Seconds)' %></dt>
+			<dd>
+				<img src="/assets/Tag-Icons/getTime.jpg" onclick="getCurrentFinishTime()" style="width:30px; float:left;"  title="Click to get current time!" ></img> 
+
+				<%= f.number_field :finish %> 
+			</dd>
+		</dl>
+
+		 <dl>
+			<dt> <%= f.label :Observation %> </dt>
+			<dd>  <%= f.text_area :obs , :rows => "4", :style => "width:260px" %> </dd>
+		</dl>	
+		<p id="notice"><%= notice %></p>
+
+		 <dl>
+			<dd>  <%= f.submit :Create%> </dd>
+		</dl>
+		
+		<% end %>
+
+		</div>
+
+	
+	</fieldset>
+</div>
+  <div class="span3">
+
+
+<!-- ADD COLABORATORS  ##################################-->
+
+
+  	<fieldset height="537px">
+
+		<legend>Evaluators</legend>
+
+		<div class="divParticipants">
+
+    
+		<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
+
+		<%= form_for Projectparticipant.new do |f| %>
+		  <b> Add Participant: </b> <br /><br />
+
+		  <ul>
+		      <li>
+		      	<%= f.select :user_id, User.where('function != ?',  'nil').collect {|user| [ user.name + " (" + user.function + ")", user.id ] } %>
+				
+				<br />
+
+		       	<%= f.hidden_field :project_id ,:value => @project.id %>
+		       	<br />
+		  	  <%= f.submit "Add" %>
+		  
+		      </li>
+		    <% end %>
+		  </ul>
+
+		 <% end %>
+
+		<table>
+
+		<% Projectparticipant.find_each(:conditions => ['project_id = ?',  @project.id]) do |projectuser| %>
+		<tr>
+		<td>
+			<% if projectuser.user.function == 'Professor' %>
+			<div style="width:280px; display:inline; float:right">
+			<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= projectuser.user.avatar.url%> width="140px" height="140px" </img>
+			</div>
+
+			<div style="width:90px; display:inline; float:right; padding:15px;"><b><font color="red">Teacher</font></b> <br /><%= projectuser.user.name%><br />
+
+					<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
+
+					 <%= link_to 'Remove', projectuser, method: :delete, data: { confirm: 'Are you sure?' } %> 
+
+					 <%end%>
+					</div>
+
+
+			</div>
+			</td>
+			</tr>
+			<% end %>
+		<% end %>
+
+		<tr>
+		<td>
+
+		<div style="width:280px; display:inline; float:right">
+			<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= @project.user.avatar.url%> width="140px" height="140px" </img>
+			</div>
+
+			<div style="width:90px; display:inline; float:right; padding:15px;"><b>Owner</b> <br /><%= @project.user.name%> </div>
+
+			
+		</div>
+		</td>
+		</tr>
+
+
+
+		<% Projectparticipant.find_each(:conditions => ['project_id = ?',  @project.id]) do |projectuser| %>
+		<%if projectuser.user.function == 'Aluno'%>
+		<tr>
+		<td>
+			<div style="width:280px; display:inline; float:right">
+			<div class="divAvatar" style="display:inline; float:right">
+				<img src=<%= projectuser.user.avatar.url%> width="140px" height="140px" </img>
+			</div>
+
+			<div style="width:90px; display:inline; float:right; padding:15px;"><b>Evaluator</b> <br /><%= projectuser.user.name%><br />
+
+					<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
+
+					 <%= link_to 'Remove', projectuser, method: :delete, data: { confirm: 'Tem Certeza?' } %> 
+
+					 <%end%>
+					</div>
+
+
+			</div>
+		</td>
+		</tr>
+		<% end %>
+		<% end %>
+
+		</table>
+
+
+</div>
+		
+	
+	</fieldset>
+
+
+
+</div>
+
+</div>
+
+
+
+<div class="row" style="padding-top:0px">
+  <div class="span12" >
+
+
+<!-- TAGS  ##################################-->
+
+<fieldset height="537px">
+		<legend>Etiquetas</legend>
+
+<select id = "whosetags">
+<option  selected value="mine">My Tags</option>
+<option value="all">All Tags</option>
+</select>
+
+<br />
+<br />
+
+<a href="" onclick="RefreshTags()">Update All</a>
+
+<br />
+<br />
+
+
+
+
+<div id="div_my_tags">
+
+<%= render "projects/projtagsmine", :tags => @tags, :project => @project %>
+
+</div>
+
+
+<div id="div_tags"  style="display:none">
+
+<%= render "projects/projtags", :tags => @tags, :project => @project %>
+
+</div>
+
+
+</fieldset>
+
+<% if (current_user.function == 'Professor') %>
+<fieldset>
+	<legend>Opções do Professor</legend>
+
+<% provide(:title, "Editar Projeto") %>
+
+<div>
+  <div >
+    <%= form_for(@project) do |f| %>
+
+      <%= f.label :Comentarios %>
+      <%= f.text_area :TeacherComments, :rows=>"6", :style=>"width:90%" %>
+      <br />
+      <%= f.submit "Salvar" %>
+    <% end %>
+
+  </div>
+</div>
+
+</fieldset>
+<% else %>
+<fieldset>
+	<legend>Teacher Comments</legend>
+	<font color="red"> <%= @project.TeacherComments%> </font>
+</fieldset>
+<% end %> 
+
+</div>  	
+</div>
+
+
+
+
+<!--<p id="notice"><%= notice %></p>-->
+
+
+<div style="display:block">
+
+<!-- DETAILS  ##################################-->
+
+	<fieldset height="537px">
+		<legend>Evaluation Details</legend>
+
+		<table>
+			<tr>
+				<td>Name:</td>
+				<td><%= @project.name %></td>
+			</tr>
+			<tr>	
+				<td>Goal:</td>
+				<td><%= @project.goal %></td>
+			</tr>
+			<tr>
+				<td>Owner:</td>
+				<td><%= @project.user.name %></td>
+			</tr>
+		</table>
+
+
+		<br />
+		<% if (current_user.has_role? :admin) or (@project.user_id == current_user.id) %>
+
+		<%= link_to 'Edit', edit_project_path(@project) %> 
+
+		<br />
+		<%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Tem Certeza?' } %>
+
+		<br />
+
+		<% end %>
+
+
+	<b> <%= link_to 'Go back to my evaluations', projects_path %> <b>
+ 	
+	</fieldset>
+</div>
+
+</div>  	
+
+<%else%>
+	
+	  <script type="text/javascript">
+	    window.location.href="/"  // put your correct path in a string here
+	  </script>
+	
+<%end%>
+
+<br />
+
+
+
+
+<!-- Script for the combo with images -->
+
+<script>
+
+$(document).ready(function(e) {		
+
+
+	//select tags
+ 	$("select#whosetags").bind("change",function() {
+         if ($(this).val() == "all"){
+          $("div#div_tags").show(); 
+          $("div#div_my_tags").hide(); 
+          }
+         else
+         {
+          $("div#div_tags").hide(); 
+          $("div#div_my_tags").show(); 
+      	 }
+       })
+ 
+
+
+
+	//no use
+	try {
+		var pages = $("#pages").msDropdown({on:{change:function(data, ui) {
+												var val = data.value;
+												if(val!="")
+													window.location = val;
+											}}}).data("dd");
+
+		var pagename = document.location.pathname.toString();
+		pagename = pagename.split("/");
+		pages.setIndexByValue(pagename[pagename.length-1]);
+		$("#ver").html(msBeautify.version.msDropdown);
+	} catch(e) {
+		//console.log(e);	
+	}
+	
+	$("#ver").html(msBeautify.version.msDropdown);
+		
+	//convert
+	$("select").msDropdown({roundedBorder:false});
+	createByJson();
+	$("#tech").data("dd");
+});
+function showValue(h) {
+	console.log(h.name, h.value);
+}
+$("#tech").change(function() {
+	console.log("by jquery: ", this.value);
+})
+//
+</script>
+
+
+
+<script>
+
+
+function RefreshTags() {
+$('#div_tags').html("<%= escape_javascript(render(:partial => 'projects/projtags')).html_safe %>");
+$('#div_my_tags').html("<%= escape_javascript(render(:partial => 'projects/projtagsmine')).html_safe %>");
+$("#notice").html("Etiquetas Atualizadas!");
+}
+
+function showValue(h) {
+	console.log(h.name, h.value);
+}
+$("#tech").change(function() {
+	console.log("by jquery: ", this.value);
+})
+//
+
+
+</script>
+
+
+
+
+
+</body>
+</html>
